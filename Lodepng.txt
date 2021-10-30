@@ -1,0 +1,30 @@
+#include "lodepng.h"
+#include <iostream>
+#include <algorithm>
+#include <windows.h>
+#include <string>
+void encodeOneStep(const char* filename, std::vector<unsigned char>& image, unsigned width, unsigned height) {
+
+    unsigned error = lodepng::encode(filename, image, width, height);
+
+    if(error) std::cout << "encoder error " << error << ": "<< lodepng_error_text(error) << std::endl;
+}
+
+int main(int argc, char *argv[]) {
+    std::string file;
+    cin>>file;
+    file+=".png";
+    const char* filein = argc > 1 ? argv[1] : file.c_str();
+
+    std::vector<unsigned char> image; //the raw pixels
+    unsigned width, height;
+
+    unsigned error = lodepng::decode(image, width, height, filein);
+
+    if(error) std::cout << "decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
+    
+    const char* fileout = argc > 2 ? argv[2] : "Output.png";
+    encodeOneStep(fileout, image, width, height);
+    
+    system("Output.png");
+}
