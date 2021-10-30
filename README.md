@@ -1,5 +1,17 @@
 # SHP_IMAGE
-Репос для работы над проектом с **ООП** в рамках воскресных *занятий в ШП 2021/2022*
- - а
- - b
- - c
+**I'm blue
+Da ba dee da ba di
+Da ba dee da ba di
+Da ba dee da ba di
+Da ba dee da ba di
+Da ba dee da ba di
+Da ba dee da ba di
+Da ba dee da ba di
+I'm blue
+Da ba dee da ba di
+Da ba dee da ba di
+Da ba dee da ba di
+Da ba dee da ba di
+Da ba dee da ba di
+Da ba dee da ba di
+Da ba dee da ba di**
