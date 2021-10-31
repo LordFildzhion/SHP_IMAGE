@@ -47,7 +47,6 @@ int main(){
 	//Transmission parameters check
 	pix2.setColor(BLACK);
 	pix2.setPos(0,0);
-	//проверить что не изменился pix
 	assert(pix.getColor().R==255);
 	assert(pix.getColor().G==255);
 	assert(pix.getColor().B==255);
