@@ -17,14 +17,13 @@
 
 using namespace std;
 class Image{
-	private:
+	public:
 		unsigned int width, height;
 		vector <Pixel> pixels;
-	public:
+
 		Image():width(0),height(0){}
 		Image(int width, int height, vector <Pixel> pixels):width(width),height(height),pixels(pixels){}
-		Image(const Image& img):width(img.width),height(img.height),pixels(img.pixels){}
-
+		Image(Image& img):width(img.width),height(img.height),pixels(img.pixels){}
 		Image(string filename="1"){
 			filename+=".png";
 			const char* filein = filename.c_str();
@@ -43,10 +42,22 @@ class Image{
 			pixels[x]=pixel;
 		}
 
-		void setPixel(Pixel pixel, unsigned x, unsigned y){
-			pixels[y*width+x]=pixel;
+		void setPixel(Color color, unsigned x, unsigned y){
+		Point point(x, y);
+		Pixel pixel(color, point);
+		pixels[y*width+x]=pixel;
 		}
 
+		void setPixel(Color color, Point point){
+			
+			Pixel pixel(color, point);
+			pixels[pixel.getY()*width+pixel.getY()]=pixel;
+		}
+		
+		void setPixel(Pixel pixel){
+			pixels[pixel.getY()*width+pixel.getX()]=pixel;
+		}
+		
 		Pixel getPixel(unsigned x){
 			return pixels[x];
 		}
@@ -55,14 +66,10 @@ class Image{
 			return pixels[y*width+x];
 		}
 
-		vector <Pixel> getPixels(){
-			return pixels;
-		}
-
 		void setColor(string color){
 			for(int i=0;i<pixels.size();i++){
         		if(pixels[i].getColor().A>0){
-					uchar medium_color = (pixels[i].getColor().R+pixels[i].getColor().G+pixels[i].getColor().B)/3;
+					uchar medium_color = pixels[i].getColor().R/3+pixels[i].getColor().G/3+pixels[i].getColor().B/3;
 					Color col;
 					if(color==RED)
 						col.setColor(medium_color,0,0);
@@ -84,6 +91,7 @@ class Image{
 						col.setColor(medium_color,medium_color,medium_color);
 					else{
 						printf("Color Incorrectly entered");
+						break;
 					}
 					pixels[i].setColor(col);
 				}

@@ -1,10 +1,11 @@
-﻿#include"Image.h"
+﻿#include"Renderer.h"
 using namespace std;
 int main(){
-    string filenameIn, color;
-    cout<<"Input name of file for in (without \".png\") and color"<<endl;
-    cin>>filenameIn>>color;
-    Image image(filenameIn);
-    image.setColor(color);
-    image.outputImage();
+    string inf, outf, ret;
+    cout<<"Filename for input in program & black|white & filename for output from program"<<endl;
+    cin>>inf>>ret>>outf;
+    Image image(inf);
+    image.setColor("grey");
+    Renderer renderer(image, ret);
+    image.outputImage(outf);
 }
