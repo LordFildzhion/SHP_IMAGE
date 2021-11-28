@@ -20,11 +20,10 @@ class Image{
 	public:
 		unsigned int width, height;
 		vector <Pixel> pixels;
-
 		Image():width(0),height(0){}
 		Image(int width, int height, vector <Pixel> pixels):width(width),height(height),pixels(pixels){}
 		Image(Image& img):width(img.width),height(img.height),pixels(img.pixels){}
-		Image(string filename="1"){
+		Image(string filename){
 			filename+=".png";
 			const char* filein = filename.c_str();
 			vector <uchar> image;
@@ -37,6 +36,7 @@ class Image{
 				pixels.push_back(pixel);
 			}
 		}
+		Image& operator = (Image&);
 
 		void setPixel(Pixel pixel, unsigned x){
 			pixels[x]=pixel;
@@ -98,7 +98,7 @@ class Image{
     		}
 		}
 
-		void outputImage(string filename="2"){
+		void outputImage(string filename){
 			filename+=".png";
 			vector <uchar> image;
 			unsigned width=pixels[pixels.size()-1].getY(), height=pixels[pixels.size()-1].getX();

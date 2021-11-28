@@ -2,8 +2,6 @@
 #include<ctime>
 #include<cstdlib>
 class Renderer{
-    private:
-
     public:
         Renderer(Image& image, string ret){
             Image outImage(image.width, image.height, image.pixels);
