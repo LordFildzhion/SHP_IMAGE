@@ -7,12 +7,13 @@ class Menu{
     public:
         Menu(int v, string filename):v(v),filename(filename){Image image(filename);this->image=image;}
         
-        void setColor(string color){
+        void setColor(Color color){
             image.setColor(color);
         }
 
         void blackWhite(string blackWhite){
-            image.setColor("grey");
+            Color color(122,122,122);
+            image.setColor(color);
             Renderer Renderer(image, blackWhite);
         }
         

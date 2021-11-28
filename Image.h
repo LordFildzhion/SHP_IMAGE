@@ -5,16 +5,6 @@
 #include<string>
 #include<algorithm>
 
-#define RED "red"
-#define ORANGE "orange"
-#define YELLOW "yellow"
-#define GREEN "green"
-#define LIGHTBLUE "light blue"
-#define BLUE "blue"
-#define MAGENTA "magenta"
-#define NEGATIVE "negative"
-#define GREY "grey"
-
 using namespace std;
 class Image{
 	public:
@@ -66,34 +56,17 @@ class Image{
 			return pixels[y*width+x];
 		}
 
-		void setColor(string color){
+		void setColor(Color color){
 			for(int i=0;i<pixels.size();i++){
-        		if(pixels[i].getColor().A>0){
-					uchar medium_color = pixels[i].getColor().R/3+pixels[i].getColor().G/3+pixels[i].getColor().B/3;
-					Color col;
-					if(color==RED)
-						col.setColor(medium_color,0,0);
-					else if(color==ORANGE)
-						col.setColor(medium_color,medium_color/2,0);
-					else if(color==YELLOW)
-						col.setColor(medium_color,medium_color,0);
-					else if(color==GREEN)
-						col.setColor(0,medium_color,0);
-					else if(color==LIGHTBLUE)
-						col.setColor(0,medium_color,medium_color);
-					else if(color==BLUE)
-						col.setColor(0,0,medium_color);
-					else if(color==MAGENTA)
-						col.setColor(medium_color,0,medium_color);
-					else if(color==NEGATIVE)
-						col.setColor(255-medium_color,255-medium_color,255-medium_color);
-					else if(color==GREY)
-						col.setColor(medium_color,medium_color,medium_color);
-					else{
-						printf("Color Incorrectly entered");
-						break;
-					}
-					pixels[i].setColor(col);
+				if(pixels[i].getColor().A>0){
+				uchar medium_color = pixels[i].getColor().R/3+pixels[i].getColor().G/3+pixels[i].getColor().B/3;
+				uchar r,g,b;
+				uchar max = std::max(color.R,std::max(color.G,color.B));
+				r=(color.R * medium_color)/max;
+				g=(color.G * medium_color)/max;
+				b=(color.B * medium_color)/max;
+				Color col(r,g,b);
+				pixels[i].setColor(col);
 				}
     		}
 		}

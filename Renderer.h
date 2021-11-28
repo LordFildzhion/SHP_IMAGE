@@ -9,38 +9,10 @@ class Renderer{
             srand(time(NULL));
             Color color;
 			for(int i=0;i<image.pixels.size();i++){
-				uchar medium_color = image.pixels[i].getColor().R/3+image.pixels[i].getColor().G/3+image.pixels[i].getColor().B/3;
+				uchar medium_color =255 - image.pixels[i].getColor().R/3;
                 bool key=false;
-                if(medium_color==255){
+                if(rand()%medium_color==0){
                     key=true;
-                }
-                else if(medium_color==0){
-
-                }
-                else if(medium_color>=204){
-                    if(1 + rand()%2==1){
-                        key=true;
-                    }
-                }
-                else if(medium_color>=153){
-                    if(1 + rand()%3==1){
-                        key=true;
-                    }
-                }
-                else if(medium_color>=102){
-                    if(1 + rand()%4==1){
-                        key=true;
-                    }
-                }
-                else if(medium_color>=51){
-                    if(1 + rand()%5==1){
-                        key=true;
-                    }
-                }
-                else{
-                    if(1 + rand()%6==1){
-                        key=true;
-                    }
                 }
                 if(ret=="black"){
                     if(key){
